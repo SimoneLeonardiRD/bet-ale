@@ -1,0 +1,155 @@
+{
+    "buttons": {
+        "copy_to_clipboard": {
+            "render": "false",
+            "text": "Copy to clipboard"
+        }
+    },
+    "facebook": {
+        "api_token": "EAAF6ZC6oUOmgBAGt93YuNshbY39C1fhZAWVNJ0hvNNoOeFhFIvY5TeVjdYg5ZChB4FHAcorxqxG1DZBq8BiTb9TKozBZCHXIWJlgVlfxwtEPNBXXZCZCAWHs0Gk44Gz6zK1bvTuRzsZCd93HWF4CBrjyTarHZACDloaxvQVBxuuDsvgZDZD"
+    },
+    "post_template": "Offerta %TITLE%\n🛒 %PERCENTAGE%%\n📦 Venduto e spedito da Amazon\n🔗 %AMZNLNK%",
+    "schedule": {
+        "buttons": {
+            "fixed_hours": [
+                {
+                    "action": "set",
+                    "field": "hours",
+                    "section": "fixed_hours",
+                    "text": "9:00",
+                    "val": "9"
+                },
+                {
+                    "action": "set",
+                    "field": "hour",
+                    "section": "fixed_hours",
+                    "text": "11:00",
+                    "val": "11"
+                },
+                {
+                    "action": "set",
+                    "field": "hours",
+                    "section": "fixed_hours",
+                    "text": "13:00",
+                    "val": "13"
+                },
+                {
+                    "action": "set",
+                    "field": "hour",
+                    "section": "fixed_hours",
+                    "text": "15:00",
+                    "val": "15"
+                },
+                {
+                    "action": "set",
+                    "field": "hours",
+                    "section": "fixed_hours",
+                    "text": "17:00",
+                    "val": "17"
+                },
+                {
+                    "action": "set",
+                    "field": "hour",
+                    "section": "fixed_hours",
+                    "text": "20:00",
+                    "val": "20"
+                },
+                {
+                    "action": "set",
+                    "field": "hours",
+                    "section": "fixed_hours",
+                    "text": "22:00",
+                    "val": "22"
+                }
+            ],
+            "granular_days": [
+                {
+                    "action": "sub",
+                    "field": "days",
+                    "section": "granular_days",
+                    "text": "-7D",
+                    "val": "7"
+                },
+                {
+                    "action": "sub",
+                    "field": "days",
+                    "section": "granular_days",
+                    "text": "-3D",
+                    "val": "3"
+                },
+                {
+                    "action": "sub",
+                    "field": "days",
+                    "section": "granular_days",
+                    "text": "-1D",
+                    "val": "1"
+                },
+                {
+                    "action": "add",
+                    "field": "days",
+                    "section": "granular_days",
+                    "text": "+1D",
+                    "val": "1"
+                },
+                {
+                    "action": "add",
+                    "field": "days",
+                    "section": "granular_days",
+                    "text": "+3D",
+                    "val": "3"
+                },
+                {
+                    "action": "add",
+                    "field": "days",
+                    "section": "granular_days",
+                    "text": "+7D",
+                    "val": "7"
+                }
+            ],
+            "granular_hours": [
+                {
+                    "action": "sub",
+                    "field": "minutes",
+                    "section": "granular_hours_sub",
+                    "text": "-5m",
+                    "val": "5"
+                },
+                {
+                    "action": "sub",
+                    "field": "minutes",
+                    "section": "granular_hours_sub",
+                    "text": "-30m",
+                    "val": "30"
+                },
+                {
+                    "action": "sub",
+                    "field": "hours",
+                    "section": "granular_hours_sub",
+                    "text": "-1h",
+                    "val": "1"
+                },
+                {
+                    "action": "add",
+                    "field": "minutes",
+                    "section": "granular_hours_add",
+                    "text": "+5m",
+                    "val": "5"
+                },
+                {
+                    "action": "add",
+                    "field": "minutes",
+                    "section": "granular_hours_add",
+                    "text": "+30m",
+                    "val": "30"
+                },
+                {
+                    "action": "add",
+                    "field": "hours",
+                    "section": "granular_hours_add",
+                    "text": "+1h",
+                    "val": "1"
+                }
+            ]
+        }
+    }
+}

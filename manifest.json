@@ -1,0 +1,35 @@
+{
+    "icons": {
+        "16": "./asset/icon.png",
+        "48": "./asset/icon.png",
+        "128": "./asset/icon.png"
+    },
+    "manifest_version": 2,
+    "name": "Bet Bot Chrome Extension",
+    "version": "1.0",
+    "permissions": [
+        "tabs",
+        "bookmarks",
+        "storage"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "*://*.bet365.it/*"
+            ],
+            "js": [
+                "./js/libs/jquery-3.4.1.js",
+                "./js/libs/jquery-ui.js",
+                "./js/script.js",
+                "./js/vue_v2_6_14.js"
+            ]
+        }
+    ],
+    "browser_action": {
+        "default_icon": {
+            "19": "./asset/icon.png",
+            "38": "./asset/icon.png"
+        }
+    },
+    "content_security_policy": "script-src 'self' 'unsafe-eval' https://connect.facebook.net; object-src 'self'"
+}
