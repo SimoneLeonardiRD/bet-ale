@@ -175,7 +175,7 @@ $(document).ready(function () {
                                 </tr>
                                 <template v-for="(leagueGameList, leagueName, index1) in leagueGames">
                                     <tr ><td colspan="22" style="background-color:lightblue"><b>{{leagueName}}<b></td><td><button v-on:click="addExclusion(leagueName)">Escludi</button></td></tr>
-                                    <tr v-for="(game, index) in leagueGameList" v-bind:id="index">
+                                    <tr v-for="(game, index) in leagueGameList" v-bind:id="''+index+game.homeTeam[0]+game.homeTeam[1]+game.awayTeam[0]+game.awayTeam[1]+index+game.homeTeam[0]+game.awayTeam[1]+game.homeTeam[0]+game.awayTeam[1]+''">
                                         <!-- <td>{{index}}</td> -->
                                         <!-- <td>{{game.lastTs}}</td> -->
                                         <td ><b>{{game.time}}</b></td>
@@ -189,14 +189,14 @@ $(document).ready(function () {
                                         <td v-if="game.thereIsData" v-bind:class="game.class_golHome" ><b>{{game.golHome}}</b></td>
                                         <td v-if="game.thereIsData" v-bind:class="game.class_golAway"><b>{{game.golAway}}</b></td>
                                         
-                                        <td v-bind:class="(game.differenzaAngoli>threshoolds.dAngoli) ? 'blink-green' : ''"><b>{{game.differenzaAngoli}}</b></td>
-                                        <td v-if="game.thereIsData" v-bind:class="(game.differenzaAttacchiPericolosi>threshoolds.attacchiPericolosi) ? 'blink-green' : ''"><b>{{game.differenzaAttacchiPericolosi}}</b></td>
-                                        <td v-if="game.thereIsData" v-bind:class="(game.sommaTiriInPorta>threshoolds.sTiP) ? 'blink-green' : ''" style="background-color: #fcfc04"><b>{{game.sommaTiriInPorta}}</b></td>
-                                        <td v-if="game.thereIsData" v-bind:class="(game.differenzaPossesso>threshoolds.possesso) ? 'blink-green' : ''"><b>{{game.differenzaPossesso}}</b></td>
+                                        <td v-bind:class="(game.differenzaAngoli>threshoolds.dAngoli) ? 'verdepastello' : ''"><b>{{game.differenzaAngoli}}</b></td>
+                                        <td v-if="game.thereIsData" v-bind:class="(game.differenzaAttacchiPericolosi>threshoolds.attacchiPericolosi) ? 'verdepastello' : ''"><b>{{game.differenzaAttacchiPericolosi}}</b></td>
+                                        <td v-if="game.thereIsData" v-bind:class="(game.sommaTiriInPorta>threshoolds.sTiP) ? 'verdepastello' : ''" style="background-color: #fcfc04"><b>{{game.sommaTiriInPorta}}</b></td>
+                                        <td v-if="game.thereIsData" v-bind:class="(game.differenzaPossesso>threshoolds.possesso) ? 'verdepastello' : ''"><b>{{game.differenzaPossesso}}</b></td>
 
                                         <td v-if="game.thereIsData" v-bind:class="(game.differenzaAngoli>threshoolds.dAngoli) ? 'verdepastello' : ''"><b>{{game.angoliHome}}</b></td>
                                         <td v-if="game.thereIsData" v-bind:class="(game.angoliAway>threshoolds.angoliAway) ? 'verdepastello' : ''"><b>{{game.angoliAway}}</b></td>
-                                        <td v-if="game.thereIsData" v-bind:class="(game.sommaAngoli>threshoolds.sAngoli) ? 'blink-green' : ''"><b>{{game.sommaAngoli}}</b></td>
+                                        <td v-if="game.thereIsData" v-bind:class="(game.sommaAngoli>threshoolds.sAngoli) ? 'verdepastello' : ''"><b>{{game.sommaAngoli}}</b></td>
                                         
                                                                                 
                                         <td v-if="game.thereIsData" v-bind:class="(game.differenzaAttacchiPericolosi>threshoolds.attacchiPericolosi2) ? 'verdepastello' : ''"><b>{{game.differenzaAttacchiPericolosi}}</b></td>
@@ -209,7 +209,7 @@ $(document).ready(function () {
                                         <td v-if="game.thereIsData" v-bind:class="(game.sommaTiriFuoriPorta>threshoolds.sTfP) ? 'verdepastello' : ''" style="background-color: #fcfc04"><b>{{game.sommaTiriFuoriPorta}}</b></td>
 
                                         <td v-if="!game.thereIsData" colspan="13">Dati non presenti</td>
-                                        <td><input type="checkbox" v-on:click="barraLinea(index, $event)"></input></td>
+                                        <td><input type="checkbox" v-on:click="barraLinea(index+game.homeTeam[0]+game.homeTeam[1]+game.awayTeam[0]+game.awayTeam[1]+index+game.homeTeam[0]+game.awayTeam[1]+game.homeTeam[0]+game.awayTeam[1], $event)"></input></td>
                                     </tr>
                                 </template>
                                 </table>
@@ -464,4 +464,5 @@ $(document).ready(function () {
 
     setTimeout(getData, 2000);
 });
+
 
