@@ -60,16 +60,27 @@ $(document).ready(function () {
         background-color: #F0C33C;
     }
 
-    #mytable.fullscreen{
+    #mytableold.fullscreen{
         z-index: 9999; 
         width: 100%; 
         height: 100%; 
         position: fixed; 
         top: 0; 
         left: 0;
-        background-color: #FFFFFF; 
+        background-color: #FFFFFF;
+        overflow:auto; 
      }
-     
+    
+     #mytable.fullscreen{  
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+        background-color: #FFFFFF;
+        overflow-y:scroll;
+     }
+          
     </style>`);
 
     /**
@@ -173,7 +184,7 @@ $(document).ready(function () {
                                     
                                     <th title="Somma Tiri fuori Porta">S. TfP</th>
                                 </tr>
-                                <template v-for="(leagueGameList, leagueName, index1) in leagueGames">
+                                <template v-for="(leagueGameList, leagueName, index) in leagueGames">
                                     <tr ><td colspan="22" style="background-color:lightblue"><b>{{leagueName}}<b></td><td><button v-on:click="addExclusion(leagueName)">Escludi</button></td></tr>
                                     <tr v-for="(game, index) in leagueGameList" v-bind:id="''+index+game.homeTeam[0]+game.homeTeam[1]+game.awayTeam[0]+game.awayTeam[1]+index+game.homeTeam[0]+game.awayTeam[1]+game.homeTeam[0]+game.awayTeam[1]+''">
                                         <!-- <td>{{index}}</td> -->
@@ -277,7 +288,8 @@ $(document).ready(function () {
                     });
                 },
                 makeDivFull: function(){
-                    $('#mytable').toggleClass('fullscreen'); 
+                    $('#mytable').toggleClass('fullscreen');
+                    //$('#bet-bot-dialog').toggleClass('fullscreen'); 
                 },
                 barraLinea: function(countrow, event){
                     var myid = '#'+countrow;
