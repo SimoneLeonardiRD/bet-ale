@@ -72,14 +72,29 @@ $(document).ready(function () {
      }
     
      #mytable.fullscreen{  
-        position: absolute;
+        position: fixed;
         right: 0;
         bottom: 0;
+        top: 0; 
+        left: 0;
         min-width: 100%;
         min-height: 100%;
         background-color: #FFFFFF;
         overflow-y:scroll;
      }
+
+     #bet-bot-dialog.fullscreen{  
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        top: 0; 
+        left: 0;
+        min-width: 100%;
+        min-height: 100%;
+        background-color: #FFFFFF;
+        overflow-y:scroll;
+     }
+
           
     </style>`);
 
@@ -101,89 +116,88 @@ $(document).ready(function () {
         console.log("Appending");
 
         $('body').prepend(`<div id="bet-bot-dialog" title="Bet Bot Chrome Extensions"> 
-                            <details>
-                                <summary>Leghe escluse</summary>
-                                <div v-for="excludedLeagueName in leagueExclusions">
-                                <button v-on:click="removeExclusion(excludedLeagueName)">Mostra</button> - {{excludedLeagueName}}
-                                </div>
-                            </details>
+                                <details>
+                                    <summary>Leghe escluse</summary>
+                                        <div v-for="excludedLeagueName in leagueExclusions">
+                                            <button v-on:click="removeExclusion(excludedLeagueName)">Mostra</button> - {{excludedLeagueName}}
+                                        </div>
+                                </details>
                             
-                            <table id="mytable" style="border: 1px solid black; width: 100%">
-                                <tr>
-                                    <th><button v-on:click="makeDivFull()">fullscreen</button></th>
-                                    <th><button v-on:click="hideHeader1()">nascondi</button></th>
-                                    <th><button v-on:click="showHeader1()">mostra</button></th>
-                                    <th colspan="20">-</th>
-                                </tr>
-                                <tr id="header1">
-                                    <!-- <th>\\</th> -->
-                                    <!-- <th>\\</th> -->
-                                    <th>\\</th>
-                                    <th>\\</th>
-                                    <th>\\</th>
-                                    <th><input type="text" size="2" v-model="threshoolds.quota1" @input="dataChangeHandler"></input></th>
-                                    <th><input type="text" size="2" v-model="threshoolds.quotaX" @input="dataChangeHandler"></input></th>
-                                    <th><input type="text" size="2" v-model="threshoolds.quota2" @input="dataChangeHandler"></input></th>
+                                <table id="mytable" style="border: 1px solid black; width: 100%; height: 100%; ">
+                                    <tr>
+                                        <th><button v-on:click="makeDivFull()">fullscreen</button></th>
+                                        <th><button v-on:click="hideHeader1()">nascondi</button></th>
+                                        <th><button v-on:click="showHeader1()">mostra</button></th>
+                                        <th colspan="20">-</th>
+                                    </tr>
+                                    <tr id="header1">
+                                        <!-- <th>\\</th> -->
+                                        <!-- <th>\\</th> -->
+                                        <th>\\</th>
+                                        <th>\\</th>
+                                        <th>\\</th>
+                                        <th><input type="text" size="2" v-model="threshoolds.quota1" @input="dataChangeHandler"></input></th>
+                                        <th><input type="text" size="2" v-model="threshoolds.quotaX" @input="dataChangeHandler"></input></th>
+                                        <th><input type="text" size="2" v-model="threshoolds.quota2" @input="dataChangeHandler"></input></th>
 
-                                    <th><input type="text" size="2" v-model="threshoolds.golHome" @input="dataChangeHandler"></input></th>
-                                    <th><input type="text" size="2" v-model="threshoolds.golAway" @input="dataChangeHandler"></input></th>
+                                        <th><input type="text" size="2" v-model="threshoolds.golHome" @input="dataChangeHandler"></input></th>
+                                        <th><input type="text" size="2" v-model="threshoolds.golAway" @input="dataChangeHandler"></input></th>
 
-                                    <th><input type="text" size="2" v-model="threshoolds.dAngoli" @input="dataChangeHandler"></input></th>
-                                    <th><input type="text" size="2" v-model="threshoolds.attacchiPericolosi" @input="dataChangeHandler"></input></th>
-                                    <th><input type="text" size="2" v-model="threshoolds.sTiP" @input="dataChangeHandler"></input></th>
-                                    <th><input type="text" size="2" v-model="threshoolds.possesso" @input="dataChangeHandler"></input></th>
+                                        <th><input type="text" size="2" v-model="threshoolds.dAngoli" @input="dataChangeHandler"></input></th>
+                                        <th><input type="text" size="2" v-model="threshoolds.attacchiPericolosi" @input="dataChangeHandler"></input></th>
+                                        <th><input type="text" size="2" v-model="threshoolds.sTiP" @input="dataChangeHandler"></input></th>
+                                        <th><input type="text" size="2" v-model="threshoolds.possesso" @input="dataChangeHandler"></input></th>
 
-                                    <th><input type="text" size="2" v-model="threshoolds.angoliHome" @input="dataChangeHandler"></input></th>
-                                    <th><input type="text" size="2" v-model="threshoolds.angoliAway" @input="dataChangeHandler"></input></th>
-                                    <th><input type="text" size="2" v-model="threshoolds.sAngoli" @input="dataChangeHandler"></input></th>
+                                        <th><input type="text" size="2" v-model="threshoolds.angoliHome" @input="dataChangeHandler"></input></th>
+                                        <th><input type="text" size="2" v-model="threshoolds.angoliAway" @input="dataChangeHandler"></input></th>
+                                        <th><input type="text" size="2" v-model="threshoolds.sAngoli" @input="dataChangeHandler"></input></th>
                                    
                                     
-                                    <th><input type="text" size="2" v-model="threshoolds.attacchiPericolosi2" @input="dataChangeHandler"></input></th>
-                                    <th><input type="text" size="2" v-model="threshoolds.attacchiPericolosiZeroZero" @input="dataChangeHandler"></input></th>
+                                        <th><input type="text" size="2" v-model="threshoolds.attacchiPericolosi2" @input="dataChangeHandler"></input></th>
+                                        <th><input type="text" size="2" v-model="threshoolds.attacchiPericolosiZeroZero" @input="dataChangeHandler"></input></th>
                                     
-                                    <th><input type="text" size="2" v-model="threshoolds.TiPHome" @input="dataChangeHandler"></input></th>
-                                    <th><input type="text" size="2" v-model="threshoolds.TiPAway" @input="dataChangeHandler"></input></th>
-                                    <th><input type="text" size="2" v-model="threshoolds.TfPHome" @input="dataChangeHandler"></input></th>
-                                    <th><input type="text" size="2" v-model="threshoolds.TfPAway" @input="dataChangeHandler"></input></th>
-                                    
-                                    
-                                    <th><input type="text" size="2" v-model="threshoolds.sTfP" @input="dataChangeHandler"></input></th>
-                                    
-                                </tr>
-                                <tr>
-                                    <!-- <th title="Numero progressivo">Id</th> -->
-                                    <!--  <th title="Ultimo aggiornamento della riga">LastTs</th> -->
-                                    <th title="Minuto della partita">Minuto</th>
-                                    <th title="Squadra casa">Home</th>
-                                    <th title="Squadra fuori casa">Away</th>
+                                        <th><input type="text" size="2" v-model="threshoolds.TiPHome" @input="dataChangeHandler"></input></th>
+                                        <th><input type="text" size="2" v-model="threshoolds.TiPAway" @input="dataChangeHandler"></input></th>
+                                        <th><input type="text" size="2" v-model="threshoolds.TfPHome" @input="dataChangeHandler"></input></th>
+                                        <th><input type="text" size="2" v-model="threshoolds.TfPAway" @input="dataChangeHandler"></input></th>
 
-                                    <th title="Quota 1">1</th>
-                                    <th title="Quota X">X</th>
-                                    <th title="Quota 2">2</th>
 
-                                    <th title="Gol squadra in casa">Gol Home</th>
-                                    <th title="Gol squadra fuori casa">Gol Away</th>
+                                        <th><input type="text" size="2" v-model="threshoolds.sTfP" @input="dataChangeHandler"></input></th>
+                                    
+                                    </tr>
+                                    <tr>
+                                        <!-- <th title="Numero progressivo">Id</th> -->
+                                        <!--  <th title="Ultimo aggiornamento della riga">LastTs</th> -->
+                                        <th title="Minuto della partita">Minuto</th>
+                                        <th title="Squadra casa">Home</th>
+                                        <th title="Squadra fuori casa">Away</th>
 
-                                    <th title="Differenza Angoli">D. A.</th>
-                                    <th title="Differenza attacchi pericolosi">D. Att. P.</th>
-                                    <th title="Somma Tiri in Porta">S. TiP</th>
-                                    <th title="Differenza possesso palla">D. Pos.</th>
-                                    
-                                    <th title="Angoli squadra in casa">A. Home</th>
-                                    <th title="Angoli squadra fuori casa">A. Away</th>
-                                    <th title="Somma Angoli">S. A.</th>                                    
-                                    
-                                    <th title="Differenza attacchi pericolosi 2">D. Att. P.2</th>
-                                    <th title="Differenza attacchi pericolosi Zero a Zero">D. Att. P. ZaZ</th>
-                                    
-                                    <th title="Tiri in porta Home">TiP Home</th>
-                                    <th title="Tiri in porta Away">TiP Away</th>
-                                    <th title="Tiri fuori porta Home">TfP Home</th>
-                                    <th title="Tiri fuori porta Away">TfP Away</th>
+                                        <th title="Quota 1">1</th>
+                                        <th title="Quota X">X</th>
+                                        <th title="Quota 2">2</th>
 
+                                        <th title="Gol squadra in casa">Gol Home</th>
+                                        <th title="Gol squadra fuori casa">Gol Away</th>
+
+                                        <th title="Differenza Angoli">D. A.</th>
+                                        <th title="Differenza attacchi pericolosi">D. Att. P.</th>
+                                        <th title="Somma Tiri in Porta">S. TiP</th>
+                                        <th title="Differenza possesso palla">D. Pos.</th>
                                     
-                                    <th title="Somma Tiri fuori Porta">S. TfP</th>
-                                </tr>
+                                        <th title="Angoli squadra in casa">A. Home</th>
+                                        <th title="Angoli squadra fuori casa">A. Away</th>
+                                        <th title="Somma Angoli">S. A.</th>                                    
+                                    
+                                        <th title="Differenza attacchi pericolosi 2">D. Att. P.2</th>
+                                        <th title="Differenza attacchi pericolosi Zero a Zero">D. Att. P. ZaZ</th>
+
+                                        <th title="Tiri in porta Home">TiP Home</th>
+                                        <th title="Tiri in porta Away">TiP Away</th>
+                                        <th title="Tiri fuori porta Home">TfP Home</th>
+                                        <th title="Tiri fuori porta Away">TfP Away</th>
+                                    
+                                        <th title="Somma Tiri fuori Porta">S. TfP</th>
+                                    </tr>
                                 <template v-for="(leagueGameList, leagueName, index) in leagueGames">
                                     <tr ><td colspan="22" style="background-color:lightblue"><b>{{leagueName}}<b></td><td><button v-on:click="addExclusion(leagueName)">Escludi</button></td></tr>
                                     <tr v-for="(game, index) in leagueGameList" v-bind:id="''+index+game.homeTeam[0]+game.homeTeam[1]+game.awayTeam[0]+game.awayTeam[1]+index+game.homeTeam[0]+game.awayTeam[1]+game.homeTeam[0]+game.awayTeam[1]+''">
@@ -224,7 +238,7 @@ $(document).ready(function () {
                                     </tr>
                                 </template>
                                 </table>
-                            </div>`);
+                           </div>`);
 
         $("#bet-bot-dialog").dialog({
             closeOnEscape: false,
