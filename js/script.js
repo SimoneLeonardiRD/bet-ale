@@ -173,9 +173,9 @@ $(document).ready(function () {
                                         <td v-bind:class="(game.differenzaAttacchiPericolosi>threshoolds.attacchiPericolosi) ? 'verdepastello' : ''">{{game.homeTeam}} ({{game.postoHomeTeam}})</td>
                                         <td style="border-right: 5px solid black" v-bind:class="(game.differenzaAttacchiPericolosi>threshoolds.attacchiPericolosi) ? 'verdepastello' : ''">{{game.awayTeam}} ({{game.postoAwayTeam}})</td>
 
-                                        <td v-bind:id="''+game.homeTeam[0]+game.homeTeam[1]+game.awayTeam[2]+game.awayTeam[0]+game.awayTeam[1]+game.homeTeam[1]+''" v-bind:class="(game.quota1<threshoolds.quota1) ? 'verdepastello' : ''"><a v-on:click="bloccaBianco(game.homeTeam[0]+game.homeTeam[1]+game.awayTeam[2]+game.awayTeam[0]+game.awayTeam[1]+game.homeTeam[1])"><b>{{game.quota1}}</b></a></td>
-                                        <td v-bind:id="''+game.homeTeam[0]+game.awayTeam[1]+game.awayTeam[2]+game.homeTeam[0]+game.awayTeam[1]+game.homeTeam[2]+game.homeTeam[4]+''" v-bind:class="(game.quotaX>threshoolds.quotaX) ? 'rossofisso' : ''"><a v-on:click="bloccaBianco(game.homeTeam[0]+game.awayTeam[1]+game.awayTeam[2]+game.homeTeam[0]+game.awayTeam[1]+game.homeTeam[2]+game.homeTeam[4])"><b>{{game.quotaX}}</b></a></td>
-                                        <td style="border-right: 5px solid black" v-bind:id="''+game.awayTeam[0]+game.awayTeam[1]+game.homeTeam[0]+game.homeTeam[1]+game.homeTeam[2]+game.awayTeam[2]+''" v-bind:class="(game.quota2<threshoolds.quota2) ? 'verdepastello' : ''"><a v-on:click="bloccaBianco(game.awayTeam[0]+game.awayTeam[1]+game.homeTeam[0]+game.homeTeam[1]+game.homeTeam[2]+game.awayTeam[2])"><b>{{game.quota2}}</b></a></td>
+                                        <td v-bind:id="''+game.homeTeam[0]+game.homeTeam[1]+game.awayTeam[2]+game.awayTeam[0]+game.awayTeam[1]+game.homeTeam[1]+''" v-bind:class="(game.quota1<threshoolds.quota1) ? 'verdepastello' : ''"><a v-on:click="bloccaBianco('verde',game.quota1<threshoolds.quota1, game.homeTeam[0]+game.homeTeam[1]+game.awayTeam[2]+game.awayTeam[0]+game.awayTeam[1]+game.homeTeam[1])"><b>{{game.quota1}}</b></a></td>
+                                        <td v-bind:id="''+game.homeTeam[0]+game.awayTeam[1]+game.awayTeam[2]+game.homeTeam[0]+game.awayTeam[1]+game.homeTeam[2]+game.homeTeam[4]+''" v-bind:class="(game.quotaX>threshoolds.quotaX) ? 'rossofisso' : ''"><a v-on:click="bloccaBianco('rosso',game.quotaX>threshoolds.quotaX, game.homeTeam[0]+game.awayTeam[1]+game.awayTeam[2]+game.homeTeam[0]+game.awayTeam[1]+game.homeTeam[2]+game.homeTeam[4])"><b>{{game.quotaX}}</b></a></td>
+                                        <td style="border-right: 5px solid black" v-bind:id="''+game.awayTeam[0]+game.awayTeam[1]+game.homeTeam[0]+game.homeTeam[1]+game.homeTeam[2]+game.awayTeam[2]+''" v-bind:class="(game.quota2<threshoolds.quota2) ? 'verdepastello' : ''"><a v-on:click="bloccaBianco('verde', game.quota2<threshoolds.quota2, game.awayTeam[0]+game.awayTeam[1]+game.homeTeam[0]+game.homeTeam[1]+game.homeTeam[2]+game.awayTeam[2])"><b>{{game.quota2}}</b></a></td>
 
                                         <td v-if="game.thereIsData" v-bind:class="game.class_golHome" ><b>{{game.golHome}}</b></td>
                                         <td style="border-right: 5px solid black" v-if="game.thereIsData" v-bind:class="game.class_golAway"><b>{{game.golAway}}</b></td>
@@ -299,10 +299,34 @@ $(document).ready(function () {
                     
                 },
 
-                bloccaBianco: function(thisid){
-                    //alert(thisid);
+                bloccaBianco: function(colorescelto, casetrue, thisid){
+                    var condsoglia = casetrue;
+                    //alert(condsoglia);
                     var myid1 = '#'+thisid;
-                    $(myid1).css("background-color", "#ffffff");
+                    var x = document.getElementById(thisid);
+
+                    if (!condsoglia){
+                        if ( window.getComputedStyle(x).getPropertyValue('background-color') === 'rgb(255, 255, 255)'){
+                            $(myid1).css("background-color", "#fcfc04");
+                        }
+                        else {
+                            $(myid1).css("background-color", "#ffffff");
+                        }
+                    }
+
+                    else{
+                        if ( window.getComputedStyle(x).getPropertyValue('background-color') === 'rgb(255, 255, 255)'){
+                            if(colorescelto === "verde"){
+                                $(myid1).css("background-color", "#90ee90");
+                            }
+                            else{
+                                $(myid1).css("background-color", "#ff0000");
+                            }
+                        }
+                        else {
+                            $(myid1).css("background-color", "#ffffff");
+                        }
+                    }
                 }
 
             }
